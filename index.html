@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>تبدیل صوت به متن فارسی — VoiceSage | رایگان و سریع</title>
+    <meta name="description" content="تبدیل صوت به متن فارسی و انگلیسی با دقت ۹۵٪. رونویسی فایل صوتی، ویس تلگرام، پادکست و جلسات. رایگان، سریع، حرفه‌ای.">
+    <meta name="keywords" content="تبدیل صوت به متن, voice to text فارسی, رونویسی فایل صوتی, تبدیل ویس به متن, تبدیل صدا به متن رایگان, speech to text فارسی">
+    <meta name="author" content="Javid Shahadati">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="VoiceSage — تبدیل صوت به متن فارسی">
+    <meta property="og:description" content="تبدیل صوت به متن فارسی و انگلیسی با دقت ۹۵٪. رایگان و سریع.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://javidshahadati.github.io/voicesage-landing/">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://javidshahadati.github.io/voicesage-landing/">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VoiceSage",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "تبدیل صوت به متن فارسی و انگلیسی با دقت ۹۵٪ — رایگان و سریع",
+        "author": {
+            "@type": "Person",
+            "name": "Javid Shahadati"
+        }
+    }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Vazirmatn', -apple-system, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.8;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 50%, #db2777 100%);
+            padding: 5rem 1.5rem;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta {
+            display: inline-block;
+            background: white;
+            color: #1e40af;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .feature-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            color: #64748b;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .faq {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .faq-item h3 {
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+        .faq-item p {
+            color: #64748b;
+        }
+        .pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        .price-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+        .price-card.pro {
+            border-color: #7c3aed;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+        }
+        .price-card h3 {
+            font-size: 1.3rem;
+            color: #1e293b;
+        }
+        .price-card .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin: 1rem 0;
+        }
+        .price-card.pro .price {
+            color: #7c3aed;
+        }
+        .price-card ul {
+            list-style: none;
+            text-align: right;
+            margin: 1.5rem 0;
+        }
+        .price-card li {
+            padding: 0.5rem 0;
+            color: #475569;
+        }
+        .footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+        }
+        .footer a {
+            color: #1e40af;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>🎙️ VoiceSage</h1>
+        <p>صدا را به متن تبدیل کن — دقیق، سریع، حرفه‌ای</p>
+        <a href="https://voicesage.streamlit.app" class="cta">🚀 امتحان رایگان</a>
+        <div class="badges">
+            <span class="badge">🎯 دقت ۹۵٪</span>
+            <span class="badge">🌐 فارسی + انگلیسی</span>
+            <span class="badge">🔄 ترجمه خودکار</span>
+            <span class="badge">📥 دانلود رایگان</span>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2>چرا VoiceSage؟</h2>
+        <p class="subtitle">بهترین ابزار تبدیل صوت به متن فارسی</p>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">🎯</div>
+                <h3>دقت ۹۵٪ برای فارسی</h3>
+                <p>با استفاده از مدل‌های پیشرفته Whisper و اصلاح با هوش مصنوعی، متن دقیق و روان تحویل بگیر.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">⚡</div>
+                <h3>سریع و آسان</h3>
+                <p>فقط فایل صوتی رو آپلود کن. بقیه‌ش با ما. فایل ۱ دقیقه‌ای در کمتر از ۱۵ ثانیه.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌐</div>
+                <h3>دوزبانه</h3>
+                <p>فارسی و انگلیسی. با تشخیص خودکار زبان و ترجمه‌ی دوطرفه.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📝</div>
+                <h3>خلاصه + کلمات کلیدی</h3>
+                <p>علاوه بر متن، خلاصه‌ی خودکار و کلمات کلیدی هم می‌گیری.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📥</div>
+                <h3>سه فرمت دانلود</h3>
+                <p>TXT برای متن، SRT و VTT برای زیرنویس.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔒</div>
+                <h3>امن و رایگان</h3>
+                <p>فایل‌ها جایی ذخیره نمی‌شن. رایگان شروع کن، هر وقت خواستی ارتقا بده.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="background: white;">
+        <h2>قیمت‌ها</h2>
+        <p class="subtitle">رایگان شروع کن، هر وقت نیاز شد ارتقا بده</p>
+        <div class="pricing">
+            <div class="price-card">
+                <h3>🎁 رایگان</h3>
+                <div class="price">$۰</div>
+                <ul>
+                    <li>✅ ۳ فایل در روز</li>
+                    <li>✅ تا ۲۵ مگابایت</li>
+                    <li>✅ رونویسی + اصلاح</li>
+                    <li>✅ ترجمه</li>
+                    <li>✅ دانلود TXT + SRT</li>
+                </ul>
+                <a href="https://voicesage.streamlit.app" class="cta">شروع رایگان</a>
+            </div>
+            <div class="price-card pro">
+                <h3>💎 حرفه‌ای</h3>
+                <div class="price">$۹ <span style="font-size: 1rem; font-weight: 400;">/ ماه</span></div>
+                <ul>
+                    <li>✅ نامحدود</li>
+                    <li>✅ تا ۱۰۰ مگابایت</li>
+                    <li>✅ رونویسی + اصلاح</li>
+                    <li>✅ ترجمه + خلاصه</li>
+                    <li>✅ پشتیبانی اولویت‌دار</li>
+                </ul>
+                <a href="https://voicesage.streamlit.app" class="cta">به‌زودی</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>سوالات متداول</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <h3>چند فایل رایگان می‌تونم استفاده کنم؟</h3>
+                <p>۳ فایل در روز. برای استفاده‌ی بیشتر، پلن حرفه‌ای ($۹/ماه) به‌زودی فعال می‌شود.</p>
+            </div>
+            <div class="faq-item">
+                <h3>چه فرمت‌های صوتی پشتیبانی می‌شه؟</h3>
+                <p>MP3، WAV، M4A، OGG، WEBM، FLAC. حداکثر ۲۵ مگابایت.</p>
+            </div>
+            <div class="faq-item">
+                <h3>چقدر طول می‌کشه تا متن آماده بشه؟</h3>
+                <p>فایل ۱ دقیقه‌ای حدود ۱۵ ثانیه. فایل ۱۰ دقیقه‌ای حدود ۲ دقیقه.</p>
+            </div>
+            <div class="faq-item">
+                <h3>آیا فایل‌های من امن هستن؟</h3>
+                <p>بله. فایل‌ها فقط برای پردازش استفاده می‌شن و جایی ذخیره نمی‌شن.</p>
+            </div>
+            <div class="faq-item">
+                <h3>چه زبان‌هایی پشتیبانی می‌شن؟</h3>
+                <p>فعلاً فارسی و انگلیسی. زبان‌های بیشتر به‌زودی.</p>
+            </div>
+            <div class="faq-item">
+                <h3>می‌تونم متن رو ویرایش کنم؟</h3>
+                <p>بله. بعد از تبدیل، متن در فیلد قابل ویرایش نمایش داده می‌شه.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>ساخته شده با ❤️ توسط <a href="https://www.linkedin.com/in/javid-shahadati-a867a0447/" target="_blank">Javid Shahadati</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            <a href="https://github.com/javidshahadati" target="_blank">GitHub</a> · 
+            <a href="https://javid-rag-assistant.streamlit.app" target="_blank">Javid RAG</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">© 2026 VoiceSage. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
