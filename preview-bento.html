@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview — Bento Grid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* گرید ظریف پس‌زمینه */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 80px 80px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* درخشش بنفش پشت گرید */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 10%; left: 50%;
+            transform: translateX(-50%);
+            width: 900px; height: 500px;
+            background: radial-gradient(ellipse, rgba(139,92,246,0.15) 0%, transparent 60%);
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header بالای گرید */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+        .header .pill {
+            display: inline-block;
+            padding: 5px 14px;
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.3);
+            border-radius: 999px;
+            font-size: 0.72rem;
+            color: #a5b4fc;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .header h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 300;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Bento Grid */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(120px, auto);
+            gap: 12px;
+        }
+
+        .tile {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: tileIn 0.8s ease-out backwards;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tile:nth-child(1) { animation-delay: 0.1s; }
+        .tile:nth-child(2) { animation-delay: 0.15s; }
+        .tile:nth-child(3) { animation-delay: 0.2s; }
+        .tile:nth-child(4) { animation-delay: 0.25s; }
+        .tile:nth-child(5) { animation-delay: 0.3s; }
+        .tile:nth-child(6) { animation-delay: 0.35s; }
+        .tile:nth-child(7) { animation-delay: 0.4s; }
+
+        .tile:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(139,92,246,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139,92,246,0.15);
+        }
+
+        /* Tile sizes */
+        .tile-large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .tile-wide {
+            grid-column: span 2;
+        }
+        .tile-tall {
+            grid-row: span 2;
+        }
+
+        /* Tile contents */
+        .tile-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .tile-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #fff;
+        }
+
+        .tile-desc {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.45);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Tile مخصوص - main feature */
+        .tile-main {
+            background: linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(236,72,153,0.1) 100%);
+            border-color: rgba(139,92,246,0.2);
+        }
+        .tile-main .tile-title {
+            font-size: 1.6rem;
+            background: linear-gradient(180deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tile-main .tile-desc {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .tile-main::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -30%;
+            width: 60%; height: 200%;
+            background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Tile آمار */
+        .tile-stat {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(180deg, #a5b4fc 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Tile CTA */
+        .tile-cta {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-color: rgba(255,255,255,0.15);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+        .tile-cta:hover {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            transform: translateY(-3px) scale(1.02);
+        }
+        .tile-cta .tile-title {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        .tile-cta .arrow {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 0.5rem;
+        }
+
+        /* Tile wave / دکوراتیو */
+        .tile-wave {
+            background: linear-gradient(135deg, rgba(6,182,212,0.15) 0%, rgba(139,92,246,0.1) 100%);
+            border-color: rgba(6,182,212,0.2);
+        }
+        .wave-lines {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 40px;
+            margin-top: 0.8rem;
+        }
+        .wave-lines span {
+            flex: 1;
+            background: linear-gradient(180deg, #06b6d4, #8b5cf6);
+            border-radius: 2px;
+            animation: wave 1.5s ease-in-out infinite;
+        }
+        .wave-lines span:nth-child(1) { height: 40%; animation-delay: 0s; }
+        .wave-lines span:nth-child(2) { height: 70%; animation-delay: 0.1s; }
+        .wave-lines span:nth-child(3) { height: 100%; animation-delay: 0.2s; }
+        .wave-lines span:nth-child(4) { height: 60%; animation-delay: 0.3s; }
+        .wave-lines span:nth-child(5) { height: 85%; animation-delay: 0.4s; }
+        .wave-lines span:nth-child(6) { height: 45%; animation-delay: 0.5s; }
+        .wave-lines span:nth-child(7) { height: 90%; animation-delay: 0.6s; }
+        .wave-lines span:nth-child(8) { height: 55%; animation-delay: 0.7s; }
+
+        @keyframes wave {
+            0%, 100% { opacity: 1; transform: scaleY(1); }
+            50% { opacity: 0.6; transform: scaleY(0.7); }
+        }
+
+        /* Tile languages */
+        .lang-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .lang-chip {
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .lang-chip.active {
+            background: rgba(139,92,246,0.2);
+            border-color: rgba(139,92,246,0.5);
+            color: #c7d2fe;
+        }
+
+        @keyframes tileIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 900px) {
+            .bento {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2.4rem; }
+            .header p { font-size: 0.9rem; }
+            .bento {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .tile-large, .tile-wide, .tile-tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            .tile { padding: 1.25rem; }
+            .stat-number { font-size: 2rem; }
+            .tile-main .tile-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="pill">AI Voice Platform</div>
+            <h1>VoiceSage</h1>
+            <p>صدا را به متن تبدیل کن — دقیق، سریع، حرفه‌ای</p>
+        </div>
+
+        <div class="bento">
+            <!-- Tile اصلی -->
+            <div class="tile tile-large tile-main">
+                <div>
+                    <div class="tile-icon">🎙️</div>
+                    <div class="tile-title">تبدیل صدا به متن</div>
+                    <div class="tile-desc">با دقت ۹۵٪ و سرعت بالا. فارسی، انگلیسی، و زبان‌های بیشتر.</div>
+                </div>
+            </div>
+
+            <!-- آمار -->
+            <div class="tile tile-stat">
+                <div class="stat-number">۹۵٪</div>
+                <div class="stat-label">دقت</div>
+            </div>
+
+            <!-- آمار -->
+            <div class="tile tile-stat">
+                <div class="stat-number">&lt;۱۵s</div>
+                <div class="stat-label">سرعت</div>
+            </div>
+
+            <!-- زبان‌ها -->
+            <div class="tile tile-wide">
+                <div>
+                    <div class="tile-icon">🌐</div>
+                    <div class="tile-title">دوزبانه + ترجمه</div>
+                    <div class="tile-desc">فارسی و انگلیسی</div>
+                </div>
+                <div class="lang-row">
+                    <span class="lang-chip active">🇮🇷 فارسی</span>
+                    <span class="lang-chip active">🇬🇧 English</span>
+                    <span class="lang-chip">عربی</span>
+                    <span class="lang-chip">ترکی</span>
+                </div>
+            </div>
+
+            <!-- Wave (دکوراتیو) -->
+            <div class="tile tile-wide tile-wave">
+                <div>
+                    <div class="tile-title">تشخیص خودکار</div>
+                    <div class="tile-desc">زبان و کلمات کلیدی</div>
+                </div>
+                <div class="wave-lines">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="tile tile-cta">
+                <div class="tile-title">شروع رایگان</div>
+                <div class="arrow">←</div>
+            </div>
+
+            <!-- دانلود -->
+            <div class="tile">
+                <div>
+                    <div class="tile-icon">📥</div>
+                    <div class="tile-title">دانلود</div>
+                    <div class="tile-desc">TXT، SRT، VTT</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
