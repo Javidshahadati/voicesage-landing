@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview — Glass Hero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* رنگ‌های پس‌زمینه (تار) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%; left: -20%;
+            width: 60%; height: 60%;
+            background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+            filter: blur(100px);
+            opacity: 0.7;
+            z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%; right: -20%;
+            width: 70%; height: 70%;
+            background: radial-gradient(circle, #db2777 0%, transparent 70%);
+            filter: blur(100px);
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        /* کارت شیشه‌ای */
+        .glass-card {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            width: 100%;
+            padding: 3.5rem 2.5rem;
+            border-radius: 40px;
+            text-align: center;
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+            animation: cardIn 1s ease-out;
+        }
+
+        /* انعکاس نور بالای کارت */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 20%; right: 20%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+        }
+
+        .glass-card h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 0 0 1rem 0;
+            color: #fff;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 20px rgba(124, 58, 237, 0.3);
+        }
+
+        .glass-card p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @media (max-width: 600px) {
+            .glass-card { padding: 2.5rem 1.5rem; border-radius: 30px; }
+            .glass-card h1 { font-size: 2.4rem; }
+            .glass-card p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <h1>🎙️ VoiceSage</h1>
+        <p>صدا را به متن تبدیل کن — دقیق، سریع، حرفه‌ای</p>
+        <div class="badges">
+            <span class="badge">🎯 دقت بالا</span>
+            <span class="badge">🌐 فارسی + انگلیسی</span>
+            <span class="badge">🔄 ترجمه</span>
+            <span class="badge">📥 دانلود</span>
+        </div>
+    </div>
+</body>
+</html>
